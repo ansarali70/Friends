@@ -1,0 +1,41 @@
+<% content_for :title, "Friends" %>
+
+<h1>Friends</h1>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Twitter</th>
+      <th scope="col">User id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each_with_index do |friend, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= friend.first_name %></td>
+        <td><%= friend.last_name %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.twitter %></td>
+        <td><%= friend.user_id %></td>
+        <td>
+  <%= link_to "Show", friend, class: "btn btn-sm btn-info" %>
+  <%= link_to "Edit", edit_friend_path(friend), class: "btn btn-sm btn-warning" %>
+  <%= button_to "Destroy", friend, method: :delete,
+        data: { confirm: "Are you sure?" },
+        class: "btn btn-sm btn-danger",
+        form: { style: "display:inline" } %>
+</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
